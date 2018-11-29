@@ -1,3 +1,5 @@
+![alt text](https://github.com/mumayank/AirDialog/blob/master/image.png "Logo")
+
 # AirDialog 
 
 An android library written in Kotlin which makes creating new dialogs in android a piece of cake!
