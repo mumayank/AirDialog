@@ -34,7 +34,6 @@ AirDialog.show(
                 )
             )
 ```
-Note that only activity and title/message is compulsory.
 
 ## Setup
 Add this line in your root build.gradle at the end of repositories:
