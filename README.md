@@ -18,7 +18,7 @@ allprojects {
 Add this line in your app build.gradle:
 ```gradle
 dependencies {
-  implementation 'com.github.mumayank:AirDialog:1.0' // this line
+  implementation 'com.github.mumayank:AirDialog:1.1' // this line
 }
 ```
 
