@@ -11,10 +11,10 @@ An android library written in Kotlin which makes creating new dialogs in android
 ## Usage
 ```kotlin
 AirDialog.show(
-                activity = this,
-                title = "This is title",
-                message = "This is message",
-                iconDrawableId = R.drawable.notification_icon_background,
+                activity = this,                      // mandatory
+                title = "This is title",              // mandatory
+                message = "This is message",          // mandatory
+                iconDrawableId = R.drawable.icon,
                 isCancelable = false,
                 airButton1 = AirDialog.Button(
                     textOnButton = "OK",
