@@ -4,9 +4,7 @@
 
 An android library written in Kotlin which makes creating new dialogs in android a piece of cake!
 
-Method counts ~50
-
-Size ~50KB
+###### (method counts ~50, size ~50KB)
 
 [![](https://jitpack.io/v/mumayank/AirDialog.svg)](https://jitpack.io/#mumayank/AirDialog)
 
