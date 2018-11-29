@@ -10,7 +10,7 @@ class AirDialog {
 
     companion object {
 
-        var alertDialogBuilder: AlertDialog.Builder? = null
+        private var alertDialogBuilder: AlertDialog.Builder? = null
 
         fun show(
             activity: Activity,
