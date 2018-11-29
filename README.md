@@ -1,5 +1,8 @@
-# AirDialog
+# AirDialog 
+
 An android library written in Kotlin which makes creating new dialogs in android a piece of cake!
+
+[![](https://jitpack.io/v/mumayank/AirDialog.svg)](https://jitpack.io/#mumayank/AirDialog)
 
 ## Usage
 ```kotlin
@@ -45,8 +48,9 @@ allprojects {
 Add this line in your app build.gradle:
 ```gradle
 dependencies {
-  implementation 'com.github.mumayank:AirDialog:1.1' // this line
+  implementation 'com.github.mumayank:AirDialog:LATEST_VERSION' // this line
 }
 ```
+where LATEST_VERSION is [![](https://jitpack.io/v/mumayank/AirDialog.svg)](https://jitpack.io/#mumayank/AirDialog)
 
 That's all!
