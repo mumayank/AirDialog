@@ -16,24 +16,15 @@ AirDialog.show(
                 message = "This is message",          // mandatory
                 iconDrawableId = R.drawable.icon,
                 isCancelable = false,
-                airButton1 = AirDialog.Button(
-                    textOnButton = "OK",
-                    onClick = fun() {
+                airButton1 = AirDialog.Button("OK") {
                         // do something
-                    }
-                ),
-                airButton2 = AirDialog.Button(
-                    textOnButton = "Cancel",
-                    onClick = fun() {
+                },
+                airButton2 = AirDialog.Button("Cancel") {
                         // do something
-                    }
-                ),
-                airButton3 = AirDialog.Button(
-                    textOnButton = "Retry",
-                    onClick = fun() {
+                },
+                airButton3 = AirDialog.Button("Retry") {
                         // do something
-                    }
-                )
+                }
             )
 ```
 
