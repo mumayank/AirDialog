@@ -42,16 +42,16 @@ class AirDialog {
 
             alertDialog?.setButton(AlertDialog.BUTTON_POSITIVE, airButton1.textOnButton) { _, i ->
                 if (activityWeakReference.get() != null) {
-                    airButton1.onClick.invoke()
                     alertDialog?.dismiss()
+                    airButton1.onClick.invoke()
                 }
             }
 
             if (airButton2 != null) {
                 alertDialog?.setButton(AlertDialog.BUTTON_NEGATIVE, airButton2.textOnButton) { _, i ->
                     if (activityWeakReference.get() != null) {
-                        airButton2.onClick.invoke()
                         alertDialog?.dismiss()
+                        airButton2.onClick.invoke()
                     }
                 }
             }
@@ -59,8 +59,8 @@ class AirDialog {
             if (airButton3 != null) {
                 alertDialog?.setButton(AlertDialog.BUTTON_POSITIVE, airButton3.textOnButton) { _, i ->
                     if (activityWeakReference.get() != null) {
-                        airButton3.onClick.invoke()
                         alertDialog?.dismiss()
+                        airButton3.onClick.invoke()
                     }
                 }
             }

@@ -11,7 +11,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        showDialog()
+    }
 
+    private fun showDialog() {
         AirDialog.show(
             this,
             "T",
@@ -19,8 +22,7 @@ class MainActivity : AppCompatActivity() {
             R.drawable.notification_icon_background,
             false,
             AirDialog.Button("OK") {
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
+                showDialog()
             },
             AirDialog.Button("Cancel") {
                 Toast.makeText(this, "This is a toast", Toast.LENGTH_SHORT).show()
