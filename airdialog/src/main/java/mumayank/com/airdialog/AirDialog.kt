@@ -10,7 +10,7 @@ class AirDialog {
 
     companion object {
 
-        private var alertDialogBuilder: AlertDialog.Builder? = null
+        private var alertDialog: AlertDialog? = null
 
         fun show(
             activity: Activity,
@@ -24,46 +24,49 @@ class AirDialog {
         ) {
             val activityWeakReference = WeakReference(activity)
 
-            alertDialogBuilder = AlertDialog.Builder(activity)
+            alertDialog = AlertDialog.Builder(activity).create()
 
             if (title != "") {
-                alertDialogBuilder?.setTitle(title)
+                alertDialog?.setTitle(title)
             }
 
             if (message != "") {
-                alertDialogBuilder?.setMessage(message)
+                alertDialog?.setMessage(message)
             }
 
             if (iconDrawableId != null) {
-                alertDialogBuilder?.setIcon(iconDrawableId)
+                alertDialog?.setIcon(iconDrawableId)
             }
 
-            alertDialogBuilder?.setCancelable(isCancelable)
+            alertDialog?.setCancelable(isCancelable)
 
-            alertDialogBuilder?.setPositiveButton(airButton1.textOnButton) { dialogInterface, i ->
+            alertDialog?.setButton(AlertDialog.BUTTON_POSITIVE, airButton1.textOnButton) { _, i ->
                 if (activityWeakReference.get() != null) {
                     airButton1.onClick.invoke()
+                    alertDialog?.dismiss()
                 }
             }
 
             if (airButton2 != null) {
-                alertDialogBuilder?.setNegativeButton(airButton2.textOnButton) { dialogInterface, i ->
+                alertDialog?.setButton(AlertDialog.BUTTON_NEGATIVE, airButton2.textOnButton) { _, i ->
                     if (activityWeakReference.get() != null) {
                         airButton2.onClick.invoke()
+                        alertDialog?.dismiss()
                     }
                 }
             }
 
             if (airButton3 != null) {
-                alertDialogBuilder?.setNeutralButton(airButton3.textOnButton) { dialogInterface, i ->
+                alertDialog?.setButton(AlertDialog.BUTTON_POSITIVE, airButton3.textOnButton) { _, i ->
                     if (activityWeakReference.get() != null) {
                         airButton3.onClick.invoke()
+                        alertDialog?.dismiss()
                     }
                 }
             }
 
             if (activity.isFinishing == false) {
-                alertDialogBuilder?.show()
+                alertDialog?.show()
             }
         }
     }
