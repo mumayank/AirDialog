@@ -1,12 +1,10 @@
 package mumayank.com.airdialog
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import java.lang.ref.WeakReference
 import android.os.Build
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.noButton
-import org.jetbrains.anko.yesButton
 
 
 class AirDialog {
@@ -22,42 +20,50 @@ class AirDialog {
             iconDrawableId: Int? = null,
             isCancelable: Boolean = true,
             airButton1: Button = Button("OK") {},
-            airButton2: Button? = null
+            airButton2: Button? = null,
+            airButton3: Button? = null
         ) {
             val activityWeakReference = WeakReference(activity)
-
-            val alert = activity.alert{}
+            val alertDialog = AlertDialog.Builder(activity).create()
 
             if (title != "") {
-                alert.title = title
+                alertDialog.setTitle(title)
             }
 
             if (message != "") {
-                alert.message = message
+                alertDialog.setMessage(message)
             }
 
             if (iconDrawableId != null) {
-                alert.iconResource = iconDrawableId
+                alertDialog.setIcon(iconDrawableId)
             }
 
-            alert.isCancelable = isCancelable
+            alertDialog.setCancelable(isCancelable)
 
-            alert.positiveButton(airButton1.textOnButton) {
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, airButton1.textOnButton) { dialog, which ->
                 if (activityWeakReference.get() != null) {
                     airButton1.onClick.invoke()
                 }
             }
 
             if (airButton2 != null) {
-                alert.negativeButton(airButton2.textOnButton) {
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, airButton2.textOnButton) { dialog, which ->
                     if (activityWeakReference.get() != null) {
                         airButton2.onClick.invoke()
                     }
                 }
             }
 
+            if (airButton3 != null) {
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, airButton3.textOnButton) { dialog, which ->
+                    if (activityWeakReference.get() != null) {
+                        airButton3.onClick.invoke()
+                    }
+                }
+            }
+
             if (activity.isFinishing == false) {
-                alert.show()
+                alertDialog.show()
             }
         }
     }

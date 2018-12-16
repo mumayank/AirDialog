@@ -26,6 +26,9 @@ class MainActivity : AppCompatActivity() {
             },
             AirDialog.Button("Cancel") {
                 Toast.makeText(this, "This is a toast", Toast.LENGTH_SHORT).show()
+            },
+            AirDialog.Button("Maybe") {
+                Toast.makeText(this, "This is a maybe button", Toast.LENGTH_SHORT).show()
             }
         )
     }
