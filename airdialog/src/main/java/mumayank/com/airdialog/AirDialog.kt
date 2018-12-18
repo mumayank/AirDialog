@@ -1,10 +1,8 @@
 package mumayank.com.airdialog
 
 import android.app.Activity
-import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import java.lang.ref.WeakReference
-import android.os.Build
 
 
 class AirDialog {
@@ -19,51 +17,73 @@ class AirDialog {
             message: String = "",
             iconDrawableId: Int? = null,
             isCancelable: Boolean = true,
-            airButton1: Button = Button("OK") {},
+            airButton1: Button? = null,
             airButton2: Button? = null,
-            airButton3: Button? = null
+            airButton3: Button? = null,
+            isDialogReallyWithoutAnyButtons: Boolean = false
         ) {
             val activityWeakReference = WeakReference(activity)
-            val alertDialog = AlertDialog.Builder(activity).create()
+            val alertDialogBuilder = AlertDialog.Builder(activity)
+            var alertDialog: AlertDialog? = null
 
             if (title != "") {
-                alertDialog.setTitle(title)
+                alertDialogBuilder.setTitle(title)
             }
 
             if (message != "") {
-                alertDialog.setMessage(message)
+                alertDialogBuilder.setMessage(message)
             }
 
             if (iconDrawableId != null) {
-                alertDialog.setIcon(iconDrawableId)
+                alertDialogBuilder.setIcon(iconDrawableId)
             }
 
-            alertDialog.setCancelable(isCancelable)
+            alertDialogBuilder.setCancelable(isCancelable)
 
-            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, airButton1.textOnButton) { dialog, which ->
-                if (activityWeakReference.get() != null) {
-                    airButton1.onClick.invoke()
+            if (airButton1 != null) {
+                alertDialogBuilder.setPositiveButton(airButton1.textOnButton) { _, _ ->
+                    if (activityWeakReference.get() != null) {
+                        alertDialog?.dismiss()
+                        airButton1.onClick.invoke()
+                    }
                 }
             }
 
             if (airButton2 != null) {
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, airButton2.textOnButton) { dialog, which ->
+                alertDialogBuilder.setNegativeButton(airButton2.textOnButton) { _, _ ->
                     if (activityWeakReference.get() != null) {
+                        alertDialog?.dismiss()
                         airButton2.onClick.invoke()
                     }
                 }
             }
 
             if (airButton3 != null) {
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, airButton3.textOnButton) { dialog, which ->
+                alertDialogBuilder.setNeutralButton(airButton3.textOnButton) { _, _ ->
                     if (activityWeakReference.get() != null) {
+                        alertDialog?.dismiss()
                         airButton3.onClick.invoke()
                     }
                 }
             }
 
+            if ( (airButton1 == null) && (airButton2 == null) && (airButton3 == null) ) {
+                if (isDialogReallyWithoutAnyButtons == false) {
+                    val tempAirButton = AirDialog.Button("OK") {}
+                    alertDialogBuilder.setPositiveButton(tempAirButton.textOnButton) { _, _ ->
+                        if (activityWeakReference.get() != null) {
+                            alertDialog?.dismiss()
+                            tempAirButton.onClick.invoke()
+                        }
+                    }
+                }
+            }
+
             if (activity.isFinishing == false) {
-                alertDialog.show()
+                if (activityWeakReference.get() != null) {
+                    alertDialog = alertDialogBuilder.create()
+                    alertDialog.show()
+                }
             }
         }
     }
