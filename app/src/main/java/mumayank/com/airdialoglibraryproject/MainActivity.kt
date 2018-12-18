@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showDialog() {
-        AirDialog.show(
+        val a = AirDialog(
             this,
             "T",
             "M",
