@@ -19,11 +19,12 @@ class AirDialog(
 
     class Button(val textOnButton: String, val onClick: () -> Unit)
 
+    var alertDialog: AlertDialog? = null
+
     init {
 
         val activityWeakReference = WeakReference(activity)
         val alertDialogBuilder = AlertDialog.Builder(activity)
-        var alertDialog: AlertDialog? = null
 
         if (title != "") {
             alertDialogBuilder.setTitle(title)
@@ -81,8 +82,12 @@ class AirDialog(
         if (activity.isFinishing == false) {
             if (activityWeakReference.get() != null) {
                 alertDialog = alertDialogBuilder.create()
-                alertDialog.show()
+                alertDialog?.show()
             }
         }
+    }
+
+    fun dismiss() {
+        alertDialog?.dismiss()
     }
 }
